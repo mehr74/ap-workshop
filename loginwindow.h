@@ -13,8 +13,17 @@ namespace MagicLib
 
 class LoginWindow : public QDialog
 {
+    Q_OBJECT
 public:
+
     LoginWindow();
+    ~LoginWindow(){}
+
+private slots:
+    void transformToLoginForm();
+    void transformToRegisterForm();
+    void showSetting();
+    void loginUser();
 
 private:
 

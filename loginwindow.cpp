@@ -110,11 +110,55 @@ LoginWindow::LoginWindow()
     mainLayout->addWidget(mySettingWidget);
     mainLayout->addWidget(myRegisterWidget);
 
-            mySettingWidget->hide();
+
+    transformToLoginForm();
+
+    connect(myRegisterBtn, SIGNAL(clicked(bool)),
+            this, SLOT(transformToRegisterForm()));
+    connect(myRegBackBtn, SIGNAL(clicked(bool)), this, SLOT(transformToLoginForm()));
+    connect(mySettingBtn, SIGNAL(clicked(bool)), this, SLOT(showSetting()));
+    connect(myLoginBtn, SIGNAL(clicked(bool)), this, SLOT(loginUser()));
+
+
+    mySettingWidget->hide();
 
     this->setLayout(mainLayout);
     adjustSize();
 
+}
+
+void LoginWindow::transformToLoginForm()
+{
+    myRegisterWidget->hide();
+    myLoginWidget->show();
+    adjustSize();
+
+}
+
+void LoginWindow::transformToRegisterForm()
+{
+    myRegisterWidget->show();
+    myLoginWidget->hide();
+    mySettingWidget->hide();
+
+}
+
+void LoginWindow::showSetting()
+{
+    if(mySettingWidget->isVisible())
+    {
+        mySettingWidget->hide();
+        adjustSize();
+    }
+    else
+    {
+        mySettingWidget->show();
+        adjustSize();
+    }
+}
+
+void LoginWindow::loginUser()
+{
 }
 
 }
